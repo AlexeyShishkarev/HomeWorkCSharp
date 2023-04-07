@@ -5,7 +5,7 @@
 
 int ReadConsole(string message) // Создаем метод для считывания числа с консоли
 {
-    Console.WriteLine(message);
+    Console.Write(message);
     int number = int.Parse(Console.ReadLine());
     return number;
 }

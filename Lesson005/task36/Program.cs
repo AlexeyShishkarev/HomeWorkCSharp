@@ -12,7 +12,7 @@ int ReadConsole(string message) // Создаем метод для считыв
     return number;
 }
 
-int lenght = ReadConsole("Введите размер массива трехзначных чисел: "); // Считываем размер массива
+int lenght = ReadConsole("Введите размер массива чисел: "); // Считываем размер массива
 int min = ReadConsole("Введите минимальное значение элемента: ");
 int max = ReadConsole("Введите максимальное значение элемента: ");
 

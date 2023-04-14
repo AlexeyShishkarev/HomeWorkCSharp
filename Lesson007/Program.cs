@@ -187,20 +187,20 @@ void Start()
                 GetParametersArray(out rows, out columns, out min, out max);
                 matrixInt = GetArrayInt(rows, columns, min, max);
 
-                double[] ArithmeticMean(int[,] array) // Метод для одномерного массива вещественных чисел
+                double[] ArithmeticMean(int[,] array) // поисе среднего арифметического
                 {
-                    double[] arithmeticMean = new double[rows];
+                    double[] arithmeticMean = new double[columns];
                     double arithmeticMeanValue;
 
-                    for (var i = 0; i < array.GetLength(0); i++)
+                    for (var i = 0; i < array.GetLength(1); i++)
                     {
                         arithmeticMeanValue = 0;
 
-                        for (var j = 0; j < array.GetLength(1); j++)
+                        for (var j = 0; j < array.GetLength(0); j++)
                         {
-                            arithmeticMeanValue += array[i, j];
+                            arithmeticMeanValue += array[j, i];
                         }
-                        arithmeticMean[i] = arithmeticMeanValue / array.GetLength(1);
+                        arithmeticMean[i] = arithmeticMeanValue / array.GetLength(0);
                     }
                     return arithmeticMean;
                 }

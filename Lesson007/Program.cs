@@ -1,5 +1,4 @@
 ﻿
-
 Start();
 
 void Start()
@@ -7,18 +6,25 @@ void Start()
 
     while (true)
     {
+        #region greeting 
+
+        //Выводим перечень задач
+
         Console.Clear();
         Console.WriteLine("Задача 47. Задайте двумерный массив размером m×n, "
         + "заполненный случайными вещественными числами.");
         Console.WriteLine("Задача 50. Напишите программу, которая на вход принимает "
         + "элемент в двумерном массиве, и возвращает его индексы первого найденого "
         + "числа или же указание, что такого элемента нет.");
+        Console.WriteLine("Задача 52. Задайте двумерный массив из целых чисел." 
+        +" Найдите среднее арифметическое элементов в каждом столбце.");
         Console.WriteLine();
         Console.WriteLine("Для выхода введите 0");
         Console.WriteLine();
+        #endregion greeting
 
         int numberTask = ReadConsole("Введите номер задачи: ");
-        int ReadConsole(string message) // Считываем с консоли, если ошибка просим повторить ввод
+        int ReadConsole(string message) // Метод для считывания с консоли, если ошибка просим повторить ввод
         {
             Console.Write(message);
             while (true)
@@ -34,16 +40,13 @@ void Start()
             }
         }
 
-        Random rand = new Random();
+        Random rand = new Random(); // создаем экземпляр класса рандом
 
         switch (numberTask)
         {
             case 0: return; break;
             #region task47
             case 47:
-
-
-
 
                 void GetParametersArray(out int rows, out int columns, // Метод для считывания параметров массива
                 out int min, out int max)
@@ -83,11 +86,11 @@ void Start()
                 }
 
 
-
-                GetParametersArray(out int rows, out int columns,
-                out int min, out int max);
-                double[,] matrix = FillArray(rows, columns, min, max);
-                PrintArray(matrix);
+                
+                GetParametersArray(out int rows, out int columns, 
+                out int min, out int max);// Считывае с клавиатуры параметры массива
+                double[,] matrix = FillArray(rows, columns, min, max); // Создаем новый массив
+                PrintArray(matrix); // Печатаем массив
 
                 Console.WriteLine();
                 Console.WriteLine("Нажмите Enter для продолжения");
@@ -100,7 +103,7 @@ void Start()
             case 50:
                 #region task50
 
-                int[,] GetArrayInt(int rows, int columns, int min, int max)
+                int[,] GetArrayInt(int rows, int columns, int min, int max) // метод для создания одномерного массива 
                 {
                     int[,] array = new int[rows, columns];
 
@@ -116,7 +119,7 @@ void Start()
 
                 GetParametersArray(out rows, out columns, out min, out max);
 
-                void PrintArrayInt(int[,] array)
+                void PrintArrayInt(int[,] array) // метод для печати одномерного массива int
                 {
                     Console.WriteLine("Наш массив: ");
                     for (var i = 0; i < array.GetLength(0); i++)
@@ -129,15 +132,16 @@ void Start()
                     }
                 }
 
-                int[,] matrixInt = GetArrayInt(rows, columns, min, max);
+                int[,] matrixInt = GetArrayInt(rows, columns, min, max); // создаем наш массив
 
-                PrintArrayInt(matrixInt);
+                PrintArrayInt(matrixInt); // Печатаем массив
 
-                int numberInArray = ReadConsole("Введите искомое число: ");
+                int numberInArray = ReadConsole("Введите искомое число: "); // Считываем искомое число
 
-                void SearchIntNumber(int[,] array, out int indexRow, out int indexColumns)
+                //Метод для поиска искомого числа в двумерном массиве int
+                void SearchIntNumber(int[,] array, out int indexRow, out int indexColumns) 
                 {
-                    indexRow = -1;
+                    indexRow = -1; // Присваиваем значения заведомо невозможные 
                     indexColumns = -1;
 
                     for (int i = 0; i < array.GetLength(0); i++)
@@ -157,17 +161,17 @@ void Start()
                             }
                         }
                     }
-                    if (indexRow == -1 && indexColumns == -1)
+
+                    //если значения остались невозможными - такого числа нет
+                    if (indexRow == -1 && indexColumns == -1)  
                     {
                         Console.WriteLine("Такого числа нет!");
-
-
                     }
 
 
                 }
 
-                SearchIntNumber(matrixInt, out int indexRow, out int indexColumns);
+                SearchIntNumber(matrixInt, out int indexRow, out int indexColumns); //Ищем число
 
                 Console.WriteLine();
                 Console.WriteLine("Нажмите Enter для продолжения");
@@ -177,12 +181,63 @@ void Start()
 
             #endregion task50
 
+            case 52:
+                #region task52
+
+                GetParametersArray(out rows, out columns, out min, out max);
+                matrixInt = GetArrayInt(rows, columns, min, max);
+
+                double[] ArithmeticMean(int[,] array) // Метод для одномерного массива вещественных чисел
+                {
+                    double[] arithmeticMean = new double[rows];
+                    double arithmeticMeanValue;
+
+                    for (var i = 0; i < array.GetLength(0); i++)
+                    {
+                        arithmeticMeanValue = 0;
+
+                        for (var j = 0; j < array.GetLength(1); j++)
+                        {
+                            arithmeticMeanValue += array[i, j];
+                        }
+                        arithmeticMean[i] = arithmeticMeanValue / array.GetLength(1);
+                    }
+                    return arithmeticMean;
+                }
+
+                double[] result = ArithmeticMean(matrixInt); // Создаем массив
+
+                void PrintArray1d(string message, double[] array) //Метод для печати массива вещечтвенных чисел
+                {
+                    Console.Write(message);
+                    foreach (double element in array)
+                    {
+                        Console.Write($"{element:f2}; ");
+                    }
+                }
+
+                PrintArrayInt(matrixInt); // Печатаем наш массив
+
+
+                PrintArray1d("Cреднее арифметическое элементов в каждом столбце ", result);
+
+                Console.WriteLine();
+                Console.WriteLine("Нажмите Enter для продолжения");
+                Console.ReadLine();
+
+
+                break;
+
+            #endregion task52
+
+            #region default
             default:
                 Console.WriteLine("Неверный номер");
                 Console.WriteLine();
                 Console.WriteLine("Нажмите Enter для продолжения");
                 Console.ReadLine();
                 break;
+                #endregion default
         }
 
 

@@ -187,7 +187,7 @@ void Start()
                 GetParametersArray(out rows, out columns, out min, out max);
                 matrixInt = GetArrayInt(rows, columns, min, max);
 
-                double[] ArithmeticMean(int[,] array) // поисе среднего арифметического
+                double[] ArithmeticMean(int[,] array) // поиск среднего арифметического
                 {
                     double[] arithmeticMean = new double[columns];
                     double arithmeticMeanValue;
@@ -239,8 +239,6 @@ void Start()
                 break;
                 #endregion default
         }
-
-
     }
 }
 

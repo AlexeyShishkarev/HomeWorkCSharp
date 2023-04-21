@@ -59,7 +59,6 @@ void PrintArray(int[,] array)
     }
 }
 
-
 int[,] matrix = FillArray(rows, columns, min, max);
 
 PrintArray(matrix);
@@ -74,7 +73,7 @@ int[,] SortRowsArray(int[,] array)
 
             for (var j = 0; j < columns - 1; j++)
             {
-                if (array[i, j] > array[i, j + 1])
+                if (array[i, j] < array[i, j + 1])
                 {
                     temp = array[i, j];
                     array[i, j] = array[i, j + 1];

@@ -15,6 +15,8 @@ int ReadConsole(string message)
 int m = ReadConsole("Введите число М: ");
 int n = ReadConsole("Введите число N: ");
 
+// Присвоение мин минимального значения из введенных 
+// А макс - максимального
 (int min, int max) GetMinMax(int m, int n)
 {
     var result = (min: Math.Min(m, n), max: Math.Max(m, n));
@@ -23,6 +25,7 @@ int n = ReadConsole("Введите число N: ");
 
 var minMax = GetMinMax(n, m);
 
+//метод дл вычисления всех чисел в диапозоне от М до N включительно
 string GetNumbers(int max, int min)
 {
     string result = String.Empty;

@@ -32,5 +32,6 @@ string GetNumbers(int max, int min)
 }
 
 string result = GetNumbers(minMax.max, minMax.min);
-Console.WriteLine("\"{0}\"", result.Trim(new char[] {' ', ','}));
+Console.WriteLine($"все натуральные числа в промежутке от " 
++ $"M до N:  \"{result.Trim(new char[] {' ', ','})}\"");
 
